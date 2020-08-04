@@ -1,0 +1,25 @@
+.search {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .icon {
+    padding: 10px;
+    min-width: 50px;
+    text-align: center;
+  }
+
+  .fa-search{
+    margin: auto;
+}
+
+.btn.btn-secondary{
+    width: 150px
+  }
+
+  .btn.btn-light{
+    position: relative;
+    left: 287px;
+}

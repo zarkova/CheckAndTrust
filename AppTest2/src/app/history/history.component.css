@@ -1,0 +1,24 @@
+/* .dot {
+    height: 100px;
+    width: 100px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  } */
+
+  .search {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .icon {
+    padding: 10px;
+    min-width: 50px;
+    text-align: center;
+  }
+
+  .myPagination /deep/ .ngx-pagination .current{
+    background: gray;
+  }

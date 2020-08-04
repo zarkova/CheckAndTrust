@@ -1,0 +1,12 @@
+.nav-underline{
+    color: rgb(55, 131, 89);
+}
+
+.nav-link{
+    font-size: .875rem;
+    color: #3d3f41;
+}
+
+.nav.nav-underline{
+    background-color: rgb(190, 183, 183);
+}

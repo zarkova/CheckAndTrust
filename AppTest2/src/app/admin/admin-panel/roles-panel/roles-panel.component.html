@@ -1,0 +1,52 @@
+<div class="container mt-5">
+  <h1>Role Panel</h1>
+
+  <div class="search"> 
+    <i class="fa fa-search fa-2x icon"></i>
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching for a role">
+    <button type="button" class="btn btn-outline-success btn-lg" (click)="openAddRoleModal(addRoleModal)"><i class="fa fa-user-plus"></i></button>
+  </div>
+
+  <ng-template #addRoleModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="addRoleLabel">Add Role</h5>
+      <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+      </button>
+     </div>
+
+     <div class="modal-body">
+      <form [formGroup]="roleForm" (ngSubmit)="onSubmitAddRole()">
+        <div class="form-group row">
+          <label for="roleDescription" class="col-sm-4 col-form-label">Role Description: </label>
+          <div class="col-sm-8">
+           <input type="text" class="form-control" formControlName="roleDescription" id="roleDescription" required>
+          </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" [disabled]="roleForm.invalid"  class="btn btn-success">Add Role</button>
+            <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
+           </div>
+        </form>
+     </div>
+
+    </ng-template>
+
+     
+
+  <div class="row">
+  
+    <table class="table">
+      <tr>
+        <th style="width: 10%">ID</th>
+        <th style="width: 30%">Role</th>
+      </tr>
+      <tr *ngFor="let role of roles | filter:searchText">
+        <td>{{role.id}}</td>
+        <td>{{role.roleDescription}}</td>
+      </tr>
+    </table>
+  
+  </div>
+
+</div>

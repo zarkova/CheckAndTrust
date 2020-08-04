@@ -1,0 +1,60 @@
+<div class="container mt-5">
+  <h1>History</h1>
+
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="card card-small mb-4 pt-3">
+        <div class="card-header border-bottom text-center">
+          <div class="mb-3 mx-auto">
+            <img id="logo" [src]="url" width="100" height="100" class="rounded-circle" alt="Cinque Terre">
+          </div>
+          <h4 class="mb-0">{{user.firstName | titlecase}}</h4>
+          <span class="text-muted d-block mb-2">{{user.role.roleDescription}}</span>
+        </div>
+        <ul class="list-group list-group-flush">
+          <div class="search"> 
+            <i class="fa fa-search fa-2x icon"></i>
+            <input class="form-control" type="date" name="search" [(ngModel)]="searchDate" autocomplete="off">
+            
+          </div>
+        </ul>
+        <button type="button" class="btn btn-outline-danger btn-lg" (click)="clearValue()"><i class="fa fa-trash-o"></i> Clear serach</button>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="card card-small mb-4">
+        <div class="card-header border-bottom">
+          <h6 class="m-0">All History</h6>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item p-3">
+            <div class="row">
+              <div class="col">
+                <table class="table">
+                  <tr>
+                    
+                    <th style="width: 20%">Entry Date</th>
+                    <th style="width: 20%">First Name</th>
+                    <th style="width: 15%">Last Name</th>
+                    <th style="width: 20%">Entry Time</th>
+                    <th style="width: 30%">Leave Time</th>
+                    
+                    
+                  </tr>
+                  <tr *ngFor="let atWHis of atWorkHistory | filter:searchDate | paginate: { itemsPerPage: 5, currentPage: p }">
+                    <td>{{atWHis.loginTime | date : 'shortDate'}}</td>
+                    <td>{{atWHis.employee.firstName}}</td>
+                    <td>{{atWHis.employee.lastName}}</td>
+                    <td>{{atWHis.loginTime | date : 'shortTime'}}</td>
+                    <td>{{atWHis.logoutTime | date : 'shortTime'}}</td>
+                  </tr>
+                </table>
+                <pagination-controls class="myPagination" (pageChange)="p = $event"></pagination-controls>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>      
+    </div>   
+  </div>
+</div>

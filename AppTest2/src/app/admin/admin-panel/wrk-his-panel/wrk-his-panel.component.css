@@ -1,0 +1,22 @@
+.table-active{
+    background-color: #dddddd;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 15px;
+    
+  }
+  
+  .icon {
+    padding: 10px;
+    min-width: 50px;
+    text-align: center;
+  }
+
+  .myPagination /deep/ .ngx-pagination .current{
+    background: gray;
+
+  }

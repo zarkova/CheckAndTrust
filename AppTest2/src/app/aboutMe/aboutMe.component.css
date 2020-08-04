@@ -1,0 +1,8 @@
+#content-section{
+    text-align: center;
+}
+
+.centered-card {
+    display: inline-block;
+    margin-top: 3rem;
+}

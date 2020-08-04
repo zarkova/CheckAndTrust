@@ -1,0 +1,47 @@
+.search {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .icon {
+    padding: 10px;
+    min-width: 50px;
+    text-align: center;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+  }
+
+  .fa-search{
+      margin: auto;
+  }
+
+  .custom-select{
+    margin: auto;
+    width: 300px;
+  }
+
+  .btn.btn-outline-success{
+  width: 150px
+}
+
+input.ng-invalid {
+  border: 1px solid red;
+}
+
+.error  {
+  color: red;
+}
+
+.myPagination /deep/ .ngx-pagination .current{
+    background: gray;
+  }
+
+.btn{
+  margin-left: 54px;
+}

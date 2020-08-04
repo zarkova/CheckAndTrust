@@ -1,0 +1,36 @@
+<div class="container mt-5">
+  <h1>Work history Panel</h1>
+
+  <div class="search"> 
+    <i class="fa fa-search fa-2x icon"></i>
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching for a employee by first name">
+    <i class="fa fa-search fa-2x icon"></i>
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText1" autocomplete="off" placeholder="Start searching by middle/last name">
+    <i class="fa fa-search fa-2x icon"></i>
+    <input class="form-control" type="date" name="search" [(ngModel)]="searchDate" autocomplete="off">
+    <button type="button" class="btn btn-outline-dark" (click)=clearValue()>Clear</button>
+  </div>
+
+  <div class="row">
+    <table class="table">
+      <tr class="thead-dark ">
+        <th style="width: 8%">Date</th>
+        <th style="width: 20%">First Name</th>
+        <th style="width: 20%">Middle Name</th>
+        <th style="width: 20%">Last Name</th>
+        <th style="width: 20%">Entry time</th>
+        <th style="width: 10%">Leave time</th>
+      </tr>
+        <tr *ngFor="let allAtWHis of historyAtWork | filter:searchDate | filter:searchText | filter:searchText1 | paginate: { itemsPerPage: 10, currentPage: p }">
+          <td class="table-active">{{allAtWHis.loginTime | date : 'shortDate'}}</td>
+          <td>{{allAtWHis.employee.firstName}}</td>
+          <td>{{allAtWHis.employee.middleName}}</td>
+          <td>{{allAtWHis.employee.lastName}}</td>
+          <td>{{allAtWHis.loginTime | date : 'shortTime'}}</td>
+          <td>{{allAtWHis.logoutTime | date : 'shortTime'}}</td>
+      </tr>
+    </table>
+    
+  </div>
+  <pagination-controls class="myPagination" (pageChange)="p = $event"></pagination-controls>
+</div>

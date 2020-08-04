@@ -1,0 +1,217 @@
+<!-- <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Middle Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let users of users"></tr>
+    <td>{{user.id}}</td>
+    <td>{{user.firstName}}</td>
+    <td>{{user.middleName}}</td>
+    <td>{{user.lastName}}</td>
+    <td>{{user.role}}</td>
+    <td><button>Edit</button></td>
+  </tbody>
+</table> -->
+
+<div class="container mt-5">
+  <h1>User Panel</h1>
+<div class="search"> 
+  <i class="fa fa-search fa-2x icon"></i>
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching for a employee">
+  <!-- <button type="button" class="btn btn-secondary" (click)="openAddEmpModal(addProfileModal)">Create user</button> -->
+</div>
+
+<ng-template #addProfileModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="editProfileLabel">Add User</h5>
+    <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close">
+     <span aria-hidden="true">&times;</span>
+    </button>
+   </div>
+
+   <div class="modal-body">
+
+    <form [formGroup]="addForm" (ngSubmit)="onSubmitAdd()">
+     <div class="form-group row">
+      <label for="username" class="col-sm-4 col-form-label">Username</label>
+      <div class="col-sm-8">
+       <input type="text" class="form-control" placeholder="Click here and write username" formControlName="username" id="username" required>
+     
+       
+          <div class="error" *ngIf="usR.username.errors?.required">
+            User name required.
+          </div> 
+          <div class="error" *ngIf="usR.username.errors?.pattern">
+            User name not valid.
+          </div>
+      
+    </div>
+      </div>
+      <div class="form-group row">
+       <label for="firstName" class="col-sm-4 col-form-label">First Name</label>
+       <div class="col-sm-8">
+        <input type="text" class="form-control" placeholder="Click here and write First Name"  formControlName="firstName" id="firstName" required>
+        <div class="error" *ngIf="usR.firstName.errors?.required">
+          First name required.
+        </div> 
+        <div class="error" *ngIf="usR.firstName.errors?.pattern">
+          First name not valid.
+        </div>
+      </div>
+      </div>
+ 
+     <div class="form-group row">
+      <label for="middleName" class="col-sm-4 col-form-label">Middle Name</label>
+      <div class="col-sm-8">
+       <input type="text" class="form-control" placeholder="Click here and write Middle Name" formControlName="middleName" id="middleName" required>
+       <div class="error" *ngIf="usR.middleName.errors?.required">
+        Middle name required.
+      </div> 
+      <div class="error" *ngIf="usR.middleName.errors?.pattern">
+        Middle name not valid.
+      </div>
+      </div>
+     </div>
+     <div class="form-group row">
+      <label for="lastName" class="col-sm-4 col-form-label">Last Name</label>
+      <div class="col-sm-8">
+       <input type="text" class="form-control" placeholder="Click here and write Last Name" formControlName="lastName" id="lastName " required>
+       <div class="error" *ngIf="usR.lastName.errors?.required">
+        Last name required.
+      </div> 
+      <div class="error" *ngIf="usR.lastName.errors?.pattern">
+        Last name not valid.
+      </div>
+      </div>
+     </div>
+     <div class="form-group row">
+      <label for="role" class="col-sm-4 col-form-label">Role</label>
+      <select class="custom-select" formControlName="roleDescription" required>
+       <option *ngFor="let role of roles" [value]="role.roleDescription">{{role.roleDescription}}</option>    
+      </select>
+     </div>
+     <div class="form-group row">
+       <label for="password" class="col-sm-4 col-form-label">Password</label>
+       <div class="col-sm-8">
+        <input type="password" class="form-control" placeholder="Click here and write password" formControlName="password" id="password" required>
+        <div class="error" *ngIf="usR.password.errors?.required">
+          Password name required.
+        </div>
+      </div>
+      </div>
+     <div class="modal-footer">
+      <button type="submit" [disabled]="addForm.invalid" class="btn btn-success">Add User</button>
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
+     </div>
+    </form>
+   </div>
+</ng-template>
+
+<div class="modal-body">
+</div>
+
+<div class="row">
+  
+  <table class="table">
+    <tr>
+      <th style="width: 20%">ID</th>
+      <th style="width: 30%">First Name</th>
+      <th style="width: 30%">Middle Name</th>
+      <th style="width: 40%">Last Name</th>
+      <th style="width: 20%">Role</th>
+      <th><button type="button" class="btn btn-outline-success btn-lg" (click)="openAddEmpModal(addProfileModal)"><i class="fa fa-plus-circle"></i>Create user</button></th>
+    </tr>
+    <tr *ngFor="let user of users | filter:searchText | paginate: { itemsPerPage: 6, currentPage: p }">
+      <td>{{user.id}}</td>
+      <td>{{user.firstName}}</td>
+      <td>{{user.middleName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.role.roleDescription}}</td>
+      <td><button type="button" class="btn btn-outline-dark btn-lg" (click)="openModal(editProfileModal, user)"><i class="fa fa-edit"></i></button>
+        <button type="button" class="btn" class="btn btn-outline-danger btn-lg" (click)="deleteEmployee(user.id)"><i class="fa fa-trash-o"></i></button>
+      </td>
+    </tr>
+  </table>
+  <pagination-controls class="myPagination" (pageChange)="p = $event"></pagination-controls>
+</div>
+
+<ng-template #editProfileModal let-modal>
+  <div class="modal-header">
+   <h5 class="modal-title" id="editProfileLabel">Edit Profile</h5>
+   <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+   </button>
+  </div>
+  
+  <div class="modal-body">
+   <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="form-group row">
+      <label for="employeeId" class="col-sm-4 col-form-label">ID</label>
+      <div class="col-sm-8 disabledInput">
+       <input type="text" readonly="readonly"  class="form-control" formControlName="employeeId" id="employeeId">
+      </div>
+     </div>
+     <div class="form-group row">
+      <label for="firstName" class="col-sm-4 col-form-label">First Name</label>
+      <div class="col-sm-8">
+       <input type="text" class="form-control" formControlName="firstName" id="firstName" required>
+       <div class="error" *ngIf="nameV.firstName.errors?.required">
+        First name required.
+      </div> 
+      <div class="error" *ngIf="nameV.firstName.errors?.pattern">
+        First name not valid.
+      </div>
+      </div>
+     </div>
+
+    <div class="form-group row">
+     <label for="middleName" class="col-sm-4 col-form-label">Middle Name</label>
+     <div class="col-sm-8">
+      <input type="text" class="form-control" formControlName="middleName" id="middleName" required>
+      <div class="error" *ngIf="nameV.middleName.errors?.required">
+        Middle name required.
+      </div> 
+      <div class="error" *ngIf="nameV.middleName.errors?.pattern">
+        Middle name not valid.
+      </div>
+     </div>
+    </div>
+    <div class="form-group row">
+     <label for="lastName" class="col-sm-4 col-form-label">Last Name</label>
+     <div class="col-sm-8">
+      <input type="text" class="form-control" formControlName="lastName" id="lastName" required>
+      <div class="error" *ngIf="nameV.lastName.errors?.required">
+        Last name required.
+      </div> 
+      <div class="error" *ngIf="nameV.lastName.errors?.pattern">
+        Last name not valid.
+      </div>
+     </div>
+    </div>
+    <div class="form-group row">
+     <label for="roleDescription" class="col-sm-4 col-form-label">Role</label>
+     <select class="custom-select" formControlName="roleDescription" required>
+      <option *ngFor="let role of roles" [value]="role.roleDescription">{{role.roleDescription}}</option>   
+    </select>
+    </div>
+    <div class="form-group row">
+      <label for="password" class="col-sm-4 col-form-label">Password</label>
+      <div class="col-sm-8">
+       <input type="password" class="form-control" placeholder="Click here and write new password" formControlName="password" id="password">
+      </div>
+     </div>
+    <div class="modal-footer">
+      <button type="submit" [disabled]="editForm.invalid"  class="btn btn-success">Save changes</button>
+     <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
+    </div>
+   </form>
+  </div>
+ </ng-template>
+
+</div>

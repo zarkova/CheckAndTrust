@@ -1,0 +1,33 @@
+<ngb-carousel *ngIf="images">
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[0]" alt="Random first slide">
+      </div>
+      <div class="carousel-caption" >
+        <!-- <img src="assets/quote.png" alt="" width="100" height="100"> -->
+        <h3>Creating a Positive Workplace</h3>
+        <p>A positive workplace environment is a key factor in increasing the wellness of employees. Not only does the practice of intentional positivity increase one’s overall wellness but it has been directly
+          linked to increased productivity and lowered stress levels in the workplace.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[1]" alt="Random second slide">
+      </div>
+      <div class="carousel-caption">
+          <!-- <img src="assets/quote.png" alt="" width="100" height="100"> -->
+          <h3>Appreciate the Individual</h3>
+          <p>Employers who practice regular employee appreciation tactics will see a general increase in employee job satisfaction. This idea alone can help to promote a positive atmosphere but will grow by leaps and bounds if implemented with a plan in mind.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[2]" alt="Random third slide">
+      </div>
+      <div class="carousel-caption">
+        <!-- <img src="assets/quote.png" alt="" width="100" height="100"> -->
+        <h3>Prioritize Work / Life Balance</h3>
+        <p>Now that your employees are aware that they are personally appreciated as individuals it is important to also allow them to recognize that you realize they have a life outside of the workplace. Employees want to understand that you value their life beyond the walls of work and that you think it is important. In 2019, professionals are enjoying working in organizations that value their wellness outside of their cubicles – and invest in their potential.</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>

@@ -1,0 +1,49 @@
+<div class="nav-scroller bg-white shadow-sm">
+    <nav class="nav nav-underline">
+      <div>
+      <p>Do not forget to CHECKIN or CHECKOUT every time you go to work or your work day ends!</p>
+    </div>
+    </nav>
+  </div>
+
+  <div class="card border-success mb-3">
+  <div class="container mt-5">
+
+  <!-- <div class="my-3 p-3 bg-white rounded shadow-sm"> -->
+    <div class="card-header">
+      <h6 class="border-bottom border-gray pb-2 mb-0">System</h6>
+    </div>
+    
+    <div class="card-body">
+    <div class="media text-muted pt-3">
+      <div *ngIf="atWork" class="input col-lg"> 
+        <p>Entry date</p>
+        <span class="text-muted d-block mb-2">{{atWork.loginTime | date : 'shortDate'}}</span>
+       
+      </div>
+      <div *ngIf="atWork" class="input col-lg"> 
+        <p>Entry time</p>
+        <span class="text-muted d-block mb-2">{{atWork.loginTime | date : 'shortTime'}}</span>
+     
+        <button type="button" (click)="buttonLeaveWork()" class="btn btn-outline-danger">Leave work</button>
+      </div>
+      <div *ngIf="!atWork" class="input"> 
+
+        <span class="text-muted d-block mb-2">Not at work.</span>
+        <button type="button" (click)="buttonStartWork()" class="btn btn-outline-success">Start work</button>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div *ngIf="atWork" class="input col-lg"> 
+  <!-- <div class="card bg-dark text-white">
+    <img [src]="url" height="240px" class="card-img" alt="...">
+    <div class="card-img-overlay">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <p class="card-text">Last updated 3 mins ago</p>
+    </div>
+  </div> -->
+</div>
